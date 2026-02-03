@@ -1,0 +1,261 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProShop E-Commerce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('home')">ProShop</a>
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('shop')">Shop</a></li>
+                <li><a href="#" onclick="showPage('cart')">Cart (<span id="cart-count">0</span>)</a></li>
+                <li><a href="#" onclick="showPage('admin')">Admin</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main>
+        <!-- Home Page -->
+        <section id="home-page" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Welcome to ProShop</h1>
+                    <p>Your one-stop destination for quality products</p>
+                    <button class="btn-primary" onclick="showPage('shop')">Shop Now</button>
+                </div>
+            </div>
+            <div class="featured-products">
+                <h2>Featured Products</h2>
+                <div id="featured-products" class="product-grid"></div>
+            </div>
+        </section>
+
+        <!-- Shop Page -->
+        <section id="shop-page" class="page">
+            <div class="shop-header">
+                <h1>Our Products</h1>
+                <div class="shop-controls">
+                    <input type="text" id="search-input" placeholder="Search products...">
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
+                    </select>
+                    <select id="sort-filter">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name A-Z</option>
+                    </select>
+                </div>
+            </div>
+            <div id="products-container" class="product-grid"></div>
+        </section>
+
+        <!-- Product Detail Page -->
+        <section id="product-detail-page" class="page">
+            <div id="product-detail" class="product-detail-container"></div>
+        </section>
+
+        <!-- Cart Page -->
+        <section id="cart-page" class="page">
+            <h1>Shopping Cart</h1>
+            <div id="cart-items" class="cart-items"></div>
+            <div id="cart-summary" class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="cart-shipping">$0.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button id="checkout-btn" class="btn-primary">Proceed to Checkout</button>
+            </div>
+        </section>
+
+        <!-- Checkout Page -->
+        <section id="checkout-page" class="page">
+            <h1>Checkout</h1>
+            <div class="checkout-container">
+                <form id="checkout-form" class="checkout-form">
+                    <div class="form-section">
+                        <h3>Shipping Information</h3>
+                        <div class="form-group">
+                            <label for="fullname">Full Name</label>
+                            <input type="text" id="fullname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">ZIP Code</label>
+                            <input type="text" id="zip" required>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h3>Payment Information</h3>
+                        <div class="form-group">
+                            <label for="card-name">Name on Card</label>
+                            <input type="text" id="card-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry">Expiry Date</label>
+                                <input type="text" id="expiry" placeholder="MM/YY" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="123" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Place Order</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Admin Login Page -->
+        <section id="admin-login-page" class="page">
+            <div class="admin-login-container">
+                <h1>Admin Login</h1>
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label for="admin-username">Username</label>
+                        <input type="text" id="admin-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-password">Password</label>
+                        <input type="password" id="admin-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Admin Dashboard -->
+        <section id="admin-page" class="page">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h1>Admin Dashboard</h1>
+                    <button id="logout-btn" class="btn-secondary">Logout</button>
+                </div>
+                
+                <!-- Add Product Form -->
+                <div class="admin-section">
+                    <h2>Add New Product</h2>
+                    <form id="add-product-form" enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-name">Product Name</label>
+                                <input type="text" id="product-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-price">Price ($)</label>
+                                <input type="number" id="product-price" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="product-category">Category</label>
+                                <input type="text" id="product-category" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-stock">Stock Quantity</label>
+                                <input type="number" id="product-stock" min="0" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-description">Description</label>
+                            <textarea id="product-description" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-image">Product Image</label>
+                            <input type="file" id="product-image" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Add Product</button>
+                    </form>
+                </div>
+
+                <!-- Product Management -->
+                <div class="admin-section">
+                    <h2>Manage Products</h2>
+                    <div id="admin-products-list" class="admin-products-list"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Edit Product Modal -->
+    <div id="edit-product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Edit Product</h2>
+            <form id="edit-product-form">
+                <input type="hidden" id="edit-product-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-product-name">Product Name</label>
+                        <input type="text" id="edit-product-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-product-price">Price ($)</label>
+                        <input type="number" id="edit-product-price" min="0" step="0.01" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-product-category">Category</label>
+                        <input type="text" id="edit-product-category" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-product-stock">Stock Quantity</label>
+                        <input type="number" id="edit-product-stock" min="0" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit-product-description">Description</label>
+                    <textarea id="edit-product-description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Current Image</label>
+                    <img id="edit-product-current-image" src="" alt="Current product image" class="current-image">
+                </div>
+                <button type="submit" class="btn-primary">Update Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div id="message-container" class="message-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
